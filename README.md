@@ -1,1 +1,1 @@
-# solar-system-threejs
+https://dumitrux.github.io/solar-system-threejs
