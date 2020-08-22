@@ -1,20 +1,16 @@
 function Stars(scene) {
     var vertices = [];
 
-    for (var i = 0; i < 6000; i++) {
-        var x = THREE.MathUtils.randFloatSpread(600);
-        var y = THREE.MathUtils.randFloat(-300, 300);
-        var z = THREE.MathUtils.randFloat(-300, 300);
+
+    var numPoints = 6000;
+    for (var i = 0; i < numPoints; i++) {
+        var x = THREE.MathUtils.randFloatSpread(1000);
+        var y = THREE.MathUtils.randFloatSpread(1000);
+        var z = THREE.MathUtils.randFloat(-500, 500);
 
         vertices.push(x, y, z);
     }
-
-    /*
-    const radius = 50;
-    const widthSegments = 18;
-    const heightSegments = 18;
-    var geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
-    */
+    
     var geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 

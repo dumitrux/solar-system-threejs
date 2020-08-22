@@ -18,8 +18,6 @@ The SceneManager usually contains multiple SceneSubjects.
 
 function SceneManager(canvas) {
 
-    const clock = new THREE.Clock();
-
     // scene setup
     const screenDimensions = {
         width: canvas.width,
@@ -30,9 +28,11 @@ function SceneManager(canvas) {
     const camera = buildCamera(screenDimensions);
     const sceneSubjects = createSceneSubjects(scene);
 
-    //const cameraControls = new MyCameraControls(camera, scene);
+    const cameraControls = new MyCameraControls(camera, canvas);
 
     scene.background = new THREE.Color('black');
+
+    //scene.add(new THREE.GridHelper(300, 300));
 
 
 
@@ -59,11 +59,13 @@ function SceneManager(canvas) {
         const aspectRatio = width / height;
         const fieldOfView = 60;
         const nearPlane = 1;
-        const farPlane = 500;
+        const farPlane = 10000;
         const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-        camera.position.z = 150;
-        camera.lookAt(new THREE.Vector3(0,0,0));
+        //camera.position.set(0, 10, 0);
+        camera.position.z = 800;
+        //camera.up.set(0, 1, 0);
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         return camera;
     }
@@ -71,6 +73,7 @@ function SceneManager(canvas) {
     function createSceneSubjects(scene) {
         const sceneSubjects = [
             new AmbientLight(scene),
+            new SunLight(scene),
             new Stars(scene),
             new SolarSystem(scene)
         ];
@@ -78,14 +81,44 @@ function SceneManager(canvas) {
         return sceneSubjects;
     }
 
+    // center a planet on click on it
+    function center(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+        const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+        const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
+        const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+        // compute a unit vector that points in the direction the camera is now
+        // in the xz plane from the center of the box
+        const direction = (new THREE.Vector3())
+            .subVectors(camera.position, boxCenter)
+            .multiply(new THREE.Vector3(1, 0, 1))
+            .normalize();
+
+        // move the camera to a position distance units way from the center
+        // in whatever direction the camera was from the center already
+        camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
+
+
+        // pick some near and far values for the frustum that
+        // will contain the box.
+        camera.near = boxSize / 100;
+        camera.far = boxSize * 100;
+
+        camera.updateProjectionMatrix();
+
+        // point the camera to look at the center of the box
+        camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
+    }
+    //const center = new THREE.Vector3(0, 0, 0);
+    // set the camera to frame the box
+    //frameArea(200, 100, center, camera);
+    
+
     // It is called by the main at every frame.
-    this.update = function () {
-        const elapsedTime = clock.getElapsedTime();
-
+    this.update = function (time) {
         for (let i = 0; i < sceneSubjects.length; i++)
-            sceneSubjects[i].update(elapsedTime);
+            sceneSubjects[i].update(time);
 
-        //cameraControls.update();
+        cameraControls.update();
         renderer.render(scene, camera);
     }
 

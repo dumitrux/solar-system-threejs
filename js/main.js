@@ -31,7 +31,10 @@ function resizeCanvas() {
     sceneManager.onWindowResize();
 }
 
-function render() {
+function render(time) {
+    // convert time into seconds
+    time *= 0.001;
+    
     requestAnimationFrame(render);
-    sceneManager.update();
+    sceneManager.update(time);
 }
