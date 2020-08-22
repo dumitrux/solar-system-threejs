@@ -5,7 +5,7 @@ function SolarSystem(scene, time) {
 
     const solarSystem = new THREE.Group();
     scene.add(solarSystem);
-    var sunMesh = Sun(scene, solarSystem, astrionomicalBodies, loader);
+    var sunMesh = createSun("sun", 30, scene, solarSystem, astrionomicalBodies, loader);
 
 
     var mercuryOrbit = createOrbit(50, solarSystem);
@@ -119,6 +119,23 @@ function createPlanet(name, size, scene, orbit, astrionomicalBodies, loader) {
     return planetMesh;
 }
 
+function createSun(name, size, scene, orbit, astrionomicalBodies, loader) {
+    var geometry = new THREE.SphereGeometry(size, 32, 16);
+
+    let texturePath = "../../assets/textures/" + name + ".jpg";
+
+    //without callback
+    var texture = loader.load(texturePath);
+
+    var material = new THREE.MeshBasicMaterial({ map: texture });
+    var sunMesh = new THREE.Mesh(geometry, material);
+
+    orbit.add(sunMesh);
+    astrionomicalBodies.push(sunMesh);
+
+    return sunMesh;
+
+}
 
 
 /*
