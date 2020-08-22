@@ -1,5 +1,3 @@
-const gui = new GUI();
-
 class ColorGUIHelper {
     constructor(object, prop) {
         this.object = object;

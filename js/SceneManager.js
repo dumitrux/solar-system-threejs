@@ -32,7 +32,17 @@ function SceneManager(canvas) {
 
     scene.background = new THREE.Color('black');
 
-    //scene.add(new THREE.GridHelper(300, 300));
+    //scene.add(new THREE.GridHelper(3000, 30));
+    
+    /*
+    var radius = 100;
+    var radials = 1;
+    var circles = 5;
+    var divisions = 100;
+    var helper = new THREE.PolarGridHelper(radius, radials, circles, divisions);
+    scene.add(helper);
+    */
+
 
 
 
@@ -111,7 +121,7 @@ function SceneManager(canvas) {
     //const center = new THREE.Vector3(0, 0, 0);
     // set the camera to frame the box
     //frameArea(200, 100, center, camera);
-    
+
 
     // It is called by the main at every frame.
     this.update = function (time) {

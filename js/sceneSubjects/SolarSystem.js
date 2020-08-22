@@ -111,7 +111,7 @@ function createOrbit(positionX) {
 function createPlanet(name, size, scene, orbit, astrionomicalBodies, loader) {
     var geometry = new THREE.SphereGeometry(size, 32, 16);
 
-    let texturePath = "../assets/textures/" + name + ".jpg";
+    let texturePath = "assets/textures/" + name + ".jpg";
 
     //without callback
     var texture = loader.load(texturePath);
@@ -128,7 +128,7 @@ function createPlanet(name, size, scene, orbit, astrionomicalBodies, loader) {
 function createSun(name, size, scene, orbit, astrionomicalBodies, loader) {
     var geometry = new THREE.SphereGeometry(size, 32, 16);
 
-    let texturePath = "../assets/textures/" + name + ".jpg";
+    let texturePath = "assets/textures/" + name + ".jpg";
 
     //without callback
     var texture = loader.load(texturePath);
