@@ -82,8 +82,14 @@ function SolarSystem(scene, time) {
 
     this.update = function (time) {
         astrionomicalBodies.forEach((obj) => {
-            //solarSystem.rotation.y = time * 0.2; // rotate around the sun
-            earthMesh.rotation.y = time * 0.2; // rotate the planet
+            mercuryOrbit.rotation.y = time * 0.5; // rotate around the sun
+            mercuryMesh.rotation.y = time * 0.20; // rotate the planet
+
+            venusOrbit.rotation.y = time * 0.2; 
+            venusMesh.rotation.y = time * 0.5;
+
+            //solarSystem.rotation.y = time * 0.2; 
+            earthMesh.rotation.y = time * 0.2; 
         });
     }
 }
@@ -105,7 +111,7 @@ function createOrbit(positionX) {
 function createPlanet(name, size, scene, orbit, astrionomicalBodies, loader) {
     var geometry = new THREE.SphereGeometry(size, 32, 16);
 
-    let texturePath = "../../assets/textures/" + name + ".jpg";
+    let texturePath = "../assets/textures/" + name + ".jpg";
 
     //without callback
     var texture = loader.load(texturePath);
@@ -122,7 +128,7 @@ function createPlanet(name, size, scene, orbit, astrionomicalBodies, loader) {
 function createSun(name, size, scene, orbit, astrionomicalBodies, loader) {
     var geometry = new THREE.SphereGeometry(size, 32, 16);
 
-    let texturePath = "../../assets/textures/" + name + ".jpg";
+    let texturePath = "../assets/textures/" + name + ".jpg";
 
     //without callback
     var texture = loader.load(texturePath);
