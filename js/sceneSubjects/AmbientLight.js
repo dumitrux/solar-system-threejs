@@ -1,6 +1,6 @@
 function AmbientLight(scene) {
     const color = 0xFFFFFF;
-    const intensity = 0.01;
+    const intensity = 0.08;
 
     const ambientLight = new THREE.AmbientLight(color, intensity);
     scene.add(ambientLight);

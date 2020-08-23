@@ -7,11 +7,16 @@ three basic responsibilities:
 */
 
 
-//http-server --cors -o -c-1 
+//http-server --cors -o -c-1
 
 const canvas = document.querySelector('#canvas');
 
 const sceneManager = new SceneManager(canvas);
+
+const pickPosition = { x: 0, y: 0 };
+const pickHelper = new PickHelper();
+clearPickPosition();
+
 
 bindEventListeners();
 render();
@@ -35,6 +40,58 @@ function render(time) {
     // convert time into seconds
     time *= 0.001;
     
+
     requestAnimationFrame(render);
-    sceneManager.update(time);
+
+    sceneManager.update(time, pickHelper, pickPosition);
 }
+
+
+
+
+
+// Picker
+
+
+
+
+function getCanvasRelativePosition(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: (event.clientX - rect.left) * canvas.width / rect.width,
+        y: (event.clientY - rect.top) * canvas.height / rect.height,
+    };
+}
+
+function setPickPosition(event) {
+    const pos = getCanvasRelativePosition(event);
+    pickPosition.x = (pos.x / canvas.width) * 2 - 1;
+    pickPosition.y = (pos.y / canvas.height) * -2 + 1;  // note we flip Y
+}
+
+function clearPickPosition() {
+    // unlike the mouse which always has a position
+    // if the user stops touching the screen we want
+    // to stop picking. For now we just pick a value
+    // unlikely to pick something
+    pickPosition.x = -100000;
+    pickPosition.y = -100000;
+}
+
+
+window.addEventListener('mousemove', setPickPosition);
+window.addEventListener('mouseout', clearPickPosition);
+window.addEventListener('mouseleave', clearPickPosition);
+
+// Mobile support
+window.addEventListener('touchstart', (event) => {
+    // prevent the window from scrolling
+    event.preventDefault();
+    setPickPosition(event.touches[0]);
+}, { passive: false });
+
+window.addEventListener('touchmove', (event) => {
+    setPickPosition(event.touches[0]);
+});
+
+window.addEventListener('touchend', clearPickPosition);

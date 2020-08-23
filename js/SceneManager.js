@@ -33,7 +33,7 @@ function SceneManager(canvas) {
     scene.background = new THREE.Color('black');
 
     //scene.add(new THREE.GridHelper(3000, 30));
-    
+
     /*
     var radius = 100;
     var radials = 1;
@@ -42,8 +42,6 @@ function SceneManager(canvas) {
     var helper = new THREE.PolarGridHelper(radius, radials, circles, divisions);
     scene.add(helper);
     */
-
-
 
 
     function buildScene() {
@@ -72,8 +70,7 @@ function SceneManager(canvas) {
         const farPlane = 10000;
         const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-        //camera.position.set(0, 10, 0);
-        camera.position.z = 800;
+        camera.position.set(0, 300, 400);
         //camera.up.set(0, 1, 0);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -82,10 +79,10 @@ function SceneManager(canvas) {
 
     function createSceneSubjects(scene) {
         const sceneSubjects = [
+            new SolarSystem(scene),
             new AmbientLight(scene),
             new SunLight(scene),
-            new Stars(scene),
-            new SolarSystem(scene)
+            new Stars(scene)
         ];
 
         return sceneSubjects;
@@ -124,10 +121,15 @@ function SceneManager(canvas) {
 
 
     // It is called by the main at every frame.
-    this.update = function (time) {
+    this.update = function (time, pickHelper, pickPosition) {
         for (let i = 0; i < sceneSubjects.length; i++)
             sceneSubjects[i].update(time);
 
+
+        let x = sceneSubjects[0];
+        //console.log(x);
+        //console.log(x.getAstrionomicalBodies());
+        pickHelper.pick(pickPosition, x.getAstrionomicalBodies(), camera, time);
         cameraControls.update();
         renderer.render(scene, camera);
     }
