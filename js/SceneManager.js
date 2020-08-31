@@ -127,9 +127,7 @@ function SceneManager(canvas) {
 
 
         let x = sceneSubjects[0];
-        //console.log(x);
-        //console.log(x.getAstrionomicalBodies());
-        pickHelper.pick(pickPosition, x.getAstrionomicalBodies(), camera, time);
+        pickHelper.pick(pickPosition, x.getAstrionomicalBodies(), camera, time, scene);
         cameraControls.update();
         renderer.render(scene, camera);
     }
