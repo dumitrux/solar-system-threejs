@@ -2,27 +2,35 @@
 <html lang="en">
 
 <head>
-    <title>threejsfundamentals</title>
+    <title>solar-system-threejs</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            height: 100%;
-        }
-
-        #c {
-            width: 100vw;
-            height: 100vh;
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <canvas id="c"></canvas>
+    <canvas id="canvas"></canvas>
 
-    <script type="module" src="./space.js"></script>
+    <script src='js/libs/three_r120.min.js'></script>
+    <script src='js/libs/OrbitControls.js'></script>
+    <script src='js/libs/OBJLoader.js'></script>
+    <script src='js/libs/MTLLoader.js'></script>
+    <script src='js/libs/dat.gui.min.js'></script>
+
+    <script src="js/cameraControls/MyCameraControls.js"></script>
+    <script src="js/PickHelper.js"></script>
+    <script src="js/gui/ColorGUIHelper.js"></script>
+
+
+    <script src="js/sceneSubjects/AmbientLight.js"></script>
+    <script src="js/sceneSubjects/SunLight.js"></script>
+
+    <script src="js/sceneSubjects/SolarSystem.js"></script>
+    <script src="js/sceneSubjects/astronomicalBodies/Stars.js"></script>
+    <script src="js/sceneSubjects/astronomicalBodies/Sun.js"></script>
+
+    <script src="js/SceneManager.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
