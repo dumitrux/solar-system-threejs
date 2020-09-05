@@ -9,8 +9,34 @@
 </head>
 
 <body>
+    <!-- threjs canvas -->
     <canvas id="canvas"></canvas>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 id="nameOfObject"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Size: <span id="size"></span></p>
+                <p>Diameter: <span id="diameter"></span></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Loading -->
+    <div id="loading">
+        <div id="author">
+            <p>@dumitrux</p>
+        </div>
+    </div>
+
+    <script src="js/LoadPage.js"></script>
     <script src='js/libs/three_r120.min.js'></script>
     <script src='js/libs/OrbitControls.js'></script>
     <script src='js/libs/OBJLoader.js'></script>

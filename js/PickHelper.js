@@ -28,6 +28,8 @@ class PickHelper {
             //this.pickedObject.material.emissive.setHex((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             this.pickedObject.material.color = new THREE.Color((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             //this.addSprite(scene, this.pickedObject.position);
+            console.log(this.pickedObject.position.x);
+            this.openModal(this.pickedObject.position.x);
         }
     }
 
@@ -39,4 +41,61 @@ class PickHelper {
         sprite.scale.set(10, 10, 10);
         scene.add(sprite);
     }
+
+    openModal(positionX) {
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        var name = document.getElementById("nameOfObject");
+        var size = document.getElementById("size");
+
+
+        modal.style.display = "block";
+        name.innerHTML = AstronomicalBodiesNames[positionX].name;
+        size.innerHTML = AstronomicalBodiesNames[positionX].size;
+    }
 }
+
+
+// Astronomical bodie name with its position (x)
+var AstronomicalBodiesNames = {
+    0: {
+        "name": "Sun",
+        "size": "10"
+    },
+    50: {
+        "name": "Mercury",
+        "size": "10"
+    },
+    60: {
+        "name": "Venus",
+        "size": "10"
+    },
+    80: {
+        "name": "Earth",
+        "size": "10"
+    },
+    15: {
+        "name": "Moon",
+        "size": "10"
+    },
+    120: {
+        "name": "Mars",
+        "size": "10"
+    },
+    160: {
+        "name": "Jupiter",
+        "size": "10"
+    },
+    240: {
+        "name": "Saturn",
+        "size": "10"
+    },
+    320: {
+        "name": "Uranus",
+        "size": "10"
+    },
+    360: {
+        "name": "Neptune",
+        "size": "10"
+    }
+};
