@@ -174,7 +174,7 @@ function createOrbitLine(distanceX, scene, astrionomicalBodies) {
     var mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI / 2;
 
-    astrionomicalBodies.push(mesh);
+    //astrionomicalBodies.push(mesh);
     scene.add(mesh);
 }
 
