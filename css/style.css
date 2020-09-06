@@ -111,9 +111,22 @@ body {
 }
 
 .modal-header {
-  padding: 2px 16px;
+  padding: 4px 16px;
   background-color: #fefefee3;
   color: black;
+}
+
+.modal-header-name {
+  display: table;
+}
+
+#nameOfObject {
+  display: inline;
+}
+
+#planetSymbol {
+  margin: 2px;
+  position: absolute;
 }
 
 .modal-body {

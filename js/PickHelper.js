@@ -47,6 +47,7 @@ class PickHelper {
         var modal = document.getElementById("myModal");
 
         var name = document.getElementById("nameOfObject");
+        var planetSymbol = document.getElementById("planetSymbol");
         var volumeXEarths = document.getElementById("volumeXEarths");
         var orbitDistance = document.getElementById("orbitDistance");
         var equatorialRadius = document.getElementById("equatorialRadius");
@@ -58,10 +59,13 @@ class PickHelper {
         var moons = document.getElementById("moons");
         var rings = document.getElementById("rings");
         var adjective = document.getElementById("adjective");
+        
 
         modal.style.display = "block";
 
-        name.innerHTML = AstronomicalBodiesNames[positionX].name;
+        name.innerHTML = AstronomicalBodiesNames[positionX].name + "  ";
+        planetSymbol.src = "../assets/astronomical-symbol/" +
+                AstronomicalBodiesNames[positionX].name + "-symbol.png";
         volumeXEarths.innerHTML = AstronomicalBodiesNames[positionX].volumeXEarths;
         orbitDistance.innerHTML = AstronomicalBodiesNames[positionX].orbitDistance;
         equatorialRadius.innerHTML = AstronomicalBodiesNames[positionX].equatorialRadius;
@@ -87,11 +91,11 @@ var AstronomicalBodiesNames = {
         "equatorialRadius": "695,508",
         "surfaceGravity": "274",
         "rotationPeriodEarthDays": "25",
-        "orbitalPeriod": "-",
-        "meanOrbitVelocity": "-",
+        "orbitalPeriod": "NA",
+        "meanOrbitVelocity": "NA",
         "surfaceTemperature": "5505",
         "atmoshpericConstituents": "Hydrogen, Helium",
-        "moons": "-",
+        "moons": "NA",
         "rings": "No",
         "adjective": "Solar",
     },
@@ -105,7 +109,7 @@ var AstronomicalBodiesNames = {
         "orbitalPeriod": "88",
         "meanOrbitVelocity": "107,218",
         "surfaceTemperature": "-173/427",
-        "atmoshpericConstituents": "",
+        "atmoshpericConstituents": "Potassium, Sodium, Atomic oxygen",
         "moons": "0",
         "rings": "No",
         "adjective": "Mercurian, Mercurial",
@@ -179,7 +183,7 @@ var AstronomicalBodiesNames = {
         "rotationPeriodEarthDays": "0.41",
         "orbitalPeriod": "4,333",
         "meanOrbitVelocity": "47,002",
-        "surfaceTemperature": "-",
+        "surfaceTemperature": "NA",
         "atmoshpericConstituents": "Hydrogen, Helium",
         "moons": "79",
         "rings": "Yes",
@@ -194,7 +198,7 @@ var AstronomicalBodiesNames = {
         "rotationPeriodEarthDays": "0.44",
         "orbitalPeriod": "10,759",
         "meanOrbitVelocity": "34,701",
-        "surfaceTemperature": "-",
+        "surfaceTemperature": "NA",
         "atmoshpericConstituents": "Hydrogen, Helium",
         "moons": "83",
         "rings": "Yes",
@@ -209,7 +213,7 @@ var AstronomicalBodiesNames = {
         "rotationPeriodEarthDays": "-0.72",
         "orbitalPeriod": "30,687",
         "meanOrbitVelocity": "24,477",
-        "surfaceTemperature": "-",
+        "surfaceTemperature": "NA",
         "atmoshpericConstituents": "Hydrogen, Helium, Methane",
         "moons": "27",
         "rings": "Yes",
@@ -224,7 +228,7 @@ var AstronomicalBodiesNames = {
         "rotationPeriodEarthDays": "0.67",
         "orbitalPeriod": "60,190",
         "meanOrbitVelocity": "19,566",
-        "surfaceTemperature": "-",
+        "surfaceTemperature": "NA",
         "atmoshpericConstituents": "Hydrogen, Helium, Methane",
         "moons": "14",
         "rings": "Yes",
