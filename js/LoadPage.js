@@ -7,11 +7,13 @@ function onReady(callback) {
     }, 3000);
 }
 
+
+document.getElementById("loadButton").addEventListener("click", function () {
+    setVisible('body', true);
+    setVisible('#loading', false);
+});
+
 function setVisible(selector, visible) {
     document.querySelector(selector).style.display = visible ? 'block' : 'none';
 }
 
-onReady(function () {
-    setVisible('body', true);
-    setVisible('#loading', false);
-});

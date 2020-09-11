@@ -2,11 +2,11 @@ function Stars(scene) {
     var vertices = [];
 
 
-    var numPoints = 1200;
+    var numPoints = 2000;
     for (var i = 0; i < numPoints; i++) {
-        var x = THREE.MathUtils.randFloatSpread(1500);
-        var y = THREE.MathUtils.randFloatSpread(1500);
-        var z = THREE.MathUtils.randFloatSpread(1500);
+        var x = THREE.MathUtils.randFloatSpread(2500);
+        var y = THREE.MathUtils.randFloatSpread(2500);
+        var z = THREE.MathUtils.randFloatSpread(2500);
 
         vertices.push(x, y, z);
     }

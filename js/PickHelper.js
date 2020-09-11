@@ -28,7 +28,7 @@ class PickHelper {
             //this.pickedObject.material.emissive.setHex((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             this.pickedObject.material.color = new THREE.Color((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             //this.addSprite(scene, this.pickedObject.position);
-            console.log(this.pickedObject.position.x);
+            //console.log(this.pickedObject.position.x);
             this.openModal(this.pickedObject.position.x);
         }
     }

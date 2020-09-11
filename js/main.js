@@ -74,13 +74,13 @@ function clearPickPosition() {
     // if the user stops touching the screen we want
     // to stop picking. For now we just pick a value
     // unlikely to pick something
-    pickPosition.x = -100000;
-    pickPosition.y = -100000;
+    pickPosition.x = undefined;
+    pickPosition.y = undefined;
 }
 
 
 
-window.addEventListener('click', setPickPosition);
+window.addEventListener('dblclick', setPickPosition);
 window.addEventListener('mouseout', clearPickPosition);
 window.addEventListener('mouseleave', clearPickPosition);
 
