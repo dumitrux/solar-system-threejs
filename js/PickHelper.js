@@ -64,7 +64,7 @@ class PickHelper {
         modal.style.display = "block";
 
         name.innerHTML = AstronomicalBodiesNames[positionX].name + "  ";
-        planetSymbol.src = "../assets/astronomical-symbol/" +
+        planetSymbol.src = "./assets/astronomical-symbol/" +
                 AstronomicalBodiesNames[positionX].name + "-symbol.png";
         volumeXEarths.innerHTML = AstronomicalBodiesNames[positionX].volumeXEarths;
         orbitDistance.innerHTML = AstronomicalBodiesNames[positionX].orbitDistance;
