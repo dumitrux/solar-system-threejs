@@ -7,8 +7,12 @@ function onReady(callback) {
     }, 3000);
 }
 
-
 document.getElementById("loadButton").addEventListener("click", function () {
+    setVisible('body', true);
+    setVisible('#loading', false);
+});
+
+document.getElementById("loadButton").addEventListener("touchstart", function () {
     setVisible('body', true);
     setVisible('#loading', false);
 });
@@ -16,4 +20,3 @@ document.getElementById("loadButton").addEventListener("click", function () {
 function setVisible(selector, visible) {
     document.querySelector(selector).style.display = visible ? 'block' : 'none';
 }
-

@@ -26,8 +26,7 @@ body {
   z-index: 100;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(43, 43, 43, 0.842);
-  
+  background-color: rgba(0, 0, 0, 0.95);
 }
 
 .center {
@@ -35,18 +34,45 @@ body {
   text-align: center;
   color: white;
   width: 80%;
-  margin: auto;
+  margin: 15px auto;
   padding: 20px 0px;
 }
 
-#author {
+#title {
+  font-family: "Lato", sans-serif;
+  font-size: 3em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+}
+
+#loadButton {
+  font-family: "Oswald", sans-serif;
+  padding: 10px 60px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 2em;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  color: rgb(255, 255, 255);
+  border: 4px solid #fff;
+  border-color: #e5c100;
+  background-color: black;
+}
+
+#loadButton:hover {
+  cursor: pointer;
+}
+
+#myLink {
+  text-decoration: none;
   color: white;
-  /*
-  position: absolute;
-  margin: auto;
-  width: 10%;
-  border: 3px solid #ffffff;
-  padding: 10px;*/
+  font-size: 20px;
+  padding: 10px 2px;
 }
 
 /* The Modal (background) */
@@ -73,16 +99,16 @@ body {
   padding: 0;
   border: 1px solid #888;
   width: 50%;
-  box-shadow: 0 4px 8px 0 rgba(139, 139, 139, 0.1), 0 6px 20px 0 rgba(139, 139, 139, 0.09);
+  box-shadow: 0 4px 8px 0 rgba(139, 139, 139, 0.1),
+    0 6px 20px 0 rgba(139, 139, 139, 0.09);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
-  
 }
 
 /* Use a media query to add a break point at 800px: */
-@media screen and (max-width:800px) {
+@media screen and (max-width: 800px) {
   .modal-content {
     width: 80%; /* The width is 100%, when the viewport is 800px or smaller */
   }
@@ -151,6 +177,46 @@ body {
 }
 
 span {
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+li {
+  font-weight: 600;
+  font-size: 18px;
+  padding: 7px 0px;
+}
+
+.instructions {
+  font-size: 20px;
+  padding: 10px 1px;
+}
+
+div.mobile {
+  display: none;
+}
+@media (max-width: 640px) {
+  div.mobile {
+    display: block;
+  }
+  div.desktop {
+    display: none;
+  }
+
+  .instructions {
+    font-size: 16px;
+  }
+
+  #loadButton {
+    padding: 8px 40px;
+  }
+
+  span {
+    font-size: 15px;
+  }
+
+  li {
+    font-size: 15px;
+    padding: 3px 0px;
+  }
 }

@@ -70,7 +70,7 @@ function SceneManager(canvas) {
         const farPlane = 10000;
         const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-        camera.position.set(0, 300, 400);
+        camera.position.set(0, 300, 750);
         //camera.up.set(0, 1, 0);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 

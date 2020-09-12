@@ -26,6 +26,22 @@
             </div>
 
             <div class="modal-body">
+                <ul>
+                    <li>Volume: <span id="volumeXEarths"></span> Earths</li>
+                    <li>Orbit distance: <span id="orbitDistance"></span> km</li>
+                    <li>Equatorial radius: <span id="equatorialRadius"></span> km</li>
+                    <li>Surface gravity: <span id="surfaceGravity"></span> m/s^2</li>
+                    <li>Rotation period: <span id="rotationPeriodEarthDays"></span> days</li>
+                    <li>Orbital period: <span id="orbitalPeriod"></span> days</li>
+                    <li>Mean Orbit Velocity: <span id="meanOrbitVelocity"></span> km/h</li>
+                    <li>Surface temperature: <span id="surfaceTemperature"></span> °C</li>
+                    <li>Atmoshperic constituents: <span id="atmoshpericConstituents"></span></li>
+                    <li>Moons: <span id="moons"></span></li>
+                    <li>Rings: <span id="rings"></span></li>
+                    <li>Adjective: <span id="adjective"></span></li>
+                </ul>
+
+                <!--
                 <p>Volume: <span id="volumeXEarths"></span> Earths</p>
                 <p>Orbit distance: <span id="orbitDistance"></span> km</p>
                 <p>Equatorial radius: <span id="equatorialRadius"></span> km</p>
@@ -37,7 +53,7 @@
                 <p>Atmoshperic constituents: <span id="atmoshpericConstituents"></span></p>
                 <p>Moons: <span id="moons"></span></p>
                 <p>Rings: <span id="rings"></span></p>
-                <p>Adjective: <span id="adjective"></span></p>
+                <p>Adjective: <span id="adjective"></span></p> -->
             </div>
         </div>
 
@@ -46,12 +62,22 @@
     <!-- Loading -->
     <div id="loading">
         <div id="author">
-            <p>@dumitrux</p>
+            <a id="myLink" href="https://github.com/dumitrux" target="_blank">@dumitrux</a>
         </div>
         <div class="center">
-            <h1>Solar System</h1>
-            <p>Double clcik for more info</p>
-            <button id="loadButton">OK!</button>
+            <h1 id="title">SOLAR SYSTEM</h1>
+            <div class="instructions">
+                <div class="desktop">
+                    <p>Double clcik on a planet to know more about it.</p>
+                    <p>You can interact with the app, with both clicks and the wheel.</p>
+                </div>
+                <div class="mobile">
+                    <p>Top on a planet to know more about it.</p>
+                    <p>You can interact with the app, tapping with one and two fingers.</p>
+                </div>
+            </div>
+            <br>
+            <button id="loadButton">GO AHEAD!</button>
         </div>
     </div>
 
