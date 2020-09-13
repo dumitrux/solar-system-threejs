@@ -36,6 +36,7 @@ function SolarSystem(scene, time) {
     var saturnMesh = createPlanet("saturn", 17, 320, scene, saturnOrbit, astrionomicalBodies, loader);
     createOrbitLine(320, scene, astrionomicalBodies);
 
+    // Saturns ring
     const innerRadius = 26;
     const outerRadius = 32;
     const thetaSegments = 60;
@@ -61,6 +62,9 @@ function SolarSystem(scene, time) {
 
 
     this.update = function (time) {
+        // rotate the planets
+        sunMesh.rotation.y = time * 0.1;
+
         mercuryOrbit.rotation.y = time * 0.08 + 3.5; // rotate around the sun
         mercuryMesh.rotation.y = time * 0.1; // rotate the planet
 
@@ -169,32 +173,3 @@ function createOrbitLine(distanceX, scene, astrionomicalBodies) {
     //astrionomicalBodies.push(mesh);
     scene.add(mesh);
 }
-
-
-
-
-/*
-astronomical bodies: asteroids, moons, planets, and stars
-astronomical objects: planetary systems, star clusters, nebulae, and galaxies
-*/
-
-
-
-
-
-
-// add line to show orbit
-/*
-const innerRadius =  50;
-const outerRadius =  50;
-const thetaSegments = 1800;
-const geometry = new THREE.RingBufferGeometry(
-innerRadius, outerRadius, thetaSegments);
-const material = new THREE.PointsMaterial({
-    //color: 'red',
-    //size: 1,
-    //sizeAttenuation: true,
-});
-const points = new THREE.Points(geometry, material);
-scene.add(points);
-*/

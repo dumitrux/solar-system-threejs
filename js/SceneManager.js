@@ -32,17 +32,11 @@ function SceneManager(canvas) {
 
     scene.background = new THREE.Color('black');
 
-    //scene.add(new THREE.GridHelper(3000, 30));
 
-    /*
-    var radius = 100;
-    var radials = 1;
-    var circles = 5;
-    var divisions = 100;
-    var helper = new THREE.PolarGridHelper(radius, radials, circles, divisions);
-    scene.add(helper);
-    */
-
+    //Picker
+    const pickPosition = { x: 0, y: 0 };
+    const pickHelper = new PickHelper();
+    clearPickPosition();
 
     function buildScene() {
         const scene = new THREE.Scene();
@@ -71,7 +65,6 @@ function SceneManager(canvas) {
         const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
         camera.position.set(0, 300, 750);
-        //camera.up.set(0, 1, 0);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
         return camera;
@@ -88,40 +81,8 @@ function SceneManager(canvas) {
         return sceneSubjects;
     }
 
-    // center a planet on click on it
-    function center(sizeToFitOnScreen, boxSize, boxCenter, camera) {
-        const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
-        const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
-        const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
-        // compute a unit vector that points in the direction the camera is now
-        // in the xz plane from the center of the box
-        const direction = (new THREE.Vector3())
-            .subVectors(camera.position, boxCenter)
-            .multiply(new THREE.Vector3(1, 0, 1))
-            .normalize();
-
-        // move the camera to a position distance units way from the center
-        // in whatever direction the camera was from the center already
-        camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
-
-
-        // pick some near and far values for the frustum that
-        // will contain the box.
-        camera.near = boxSize / 100;
-        camera.far = boxSize * 100;
-
-        camera.updateProjectionMatrix();
-
-        // point the camera to look at the center of the box
-        camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
-    }
-    //const center = new THREE.Vector3(0, 0, 0);
-    // set the camera to frame the box
-    //frameArea(200, 100, center, camera);
-
-
     // It is called by the main at every frame.
-    this.update = function (time, pickHelper, pickPosition) {
+    this.update = function (time) {
         for (let i = 0; i < sceneSubjects.length; i++)
             sceneSubjects[i].update(time);
 
@@ -146,5 +107,79 @@ function SceneManager(canvas) {
         renderer.setSize(width, height);
     }
 
-    //this.onClick(x, y)...
+
+    // Picker
+    function getCanvasRelativePosition(event) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (event.clientX - rect.left) * canvas.width / rect.width,
+            y: (event.clientY - rect.top) * canvas.height / rect.height,
+        };
+    }
+
+    function setPickPosition(event) {
+        const pos = getCanvasRelativePosition(event);
+        pickPosition.x = (pos.x / canvas.width) * 2 - 1;
+        pickPosition.y = (pos.y / canvas.height) * -2 + 1;  // note we flip Y
+    }
+
+    function clearPickPosition() {
+        // unlike the mouse which always has a position
+        // if the user stops touching the screen we want
+        // to stop picking. For now we just pick a value
+        // unlikely to pick something
+        pickPosition.x = undefined;
+        pickPosition.y = undefined;
+    }
+
+    window.addEventListener('dblclick', setPickPosition);
+    window.addEventListener('mouseout', clearPickPosition);
+    window.addEventListener('mouseleave', clearPickPosition);
+
+    // Mobile support
+    window.addEventListener('touchstart', (event) => {
+        // prevent the window from scrolling
+        event.preventDefault();
+        setPickPosition(event.touches[0]);
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (event) => {
+        setPickPosition(event.touches[0]);
+    });
+
+    window.addEventListener('touchend', clearPickPosition);
+
+
+
+    {
+        // Modal
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var modal = document.getElementById("myModal");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        span.addEventListener('touchend', (event) => {
+            modal.style.display = "none";
+        });
+
+
+        // When the user clicks anywhere outside of the modal, close it (mobile)
+        window.addEventListener('touchend', (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
 }

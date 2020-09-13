@@ -8,7 +8,6 @@ class PickHelper {
     pick(normalizedPosition, getAstrionomicalBodies, camera, time, scene) {
         // restore the color if there is a picked object
         if (this.pickedObject) {
-            //this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
             this.pickedObject.material.color = this.pickedObjectSavedColor;
             this.pickedObject = undefined;
         }
@@ -22,13 +21,9 @@ class PickHelper {
             // pick the first object. It's the closest one
             this.pickedObject = intersectedObjects[0].object;
             // save its color
-            //this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
             this.pickedObjectSavedColor = this.pickedObject.material.color;
             // set its emissive color to flashing red/yellow
-            //this.pickedObject.material.emissive.setHex((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             this.pickedObject.material.color = new THREE.Color((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
-            //this.addSprite(scene, this.pickedObject.position);
-            //console.log(this.pickedObject.position.x);
             this.openModal(this.pickedObject.position.x);
         }
     }
@@ -83,6 +78,7 @@ class PickHelper {
 
 
 // Astronomical bodie name with its position (x)
+// This should be in a JSON file :/
 var AstronomicalBodiesNames = {
     0: {
         "name": "Sun",
